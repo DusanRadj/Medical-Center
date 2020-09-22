@@ -1,0 +1,82 @@
+<h2 style="margin-left: 50px; margin-top: 20px;">Medical examination history: </h2>
+			
+<div class="container">
+	<div class="form-group">
+		<label>Sort by</label>
+		<select (change)="onChange()" class="custom-select" name="type"  [(ngModel)]="sortType" >
+			<option  *ngFor="let st of sortTypes" >{{st}}</option>
+		</select>
+	</div>
+
+	<div class="row clearfix">
+		<div class="col-md-12 table-responsive">
+			<table class="table table-bordered table-sortable" id="tab_logic">
+				<thead>
+					<tr>
+						<th class="text-center">
+							Date
+						</th>
+						<th class="text-center">
+							Doctor
+						</th>
+						<th class="text-center">
+							Type
+						</th>
+						<th class="text-center">
+							Duration(min)
+						</th>
+						<th class="text-center">
+							Price(rsd)
+						</th>
+						<th class="text-center">
+							Clinic
+						</th>
+						<th class="text-center">
+							Medical room
+						</th>
+						<th class="text-center">
+							Your clinic rate
+						</th>
+						<th class="text-center">
+							Your doctor rate
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr id='addr0' data-id="0" class="hidden" *ngFor="let examination of examinations">
+						<td data-name="name">
+							{{examination.date | date}}
+						</td>
+						<td data-name="mail">
+							{{examination.doctorUsername}}
+						</td>
+						<td data-name="desc">
+							{{examination.type}}
+						</td>
+						<td data-name="desc">
+							{{examination.duration}}
+						</td>
+						<td data-name="desc">
+							{{examination.price}}
+						</td>
+						<td data-name="desc">
+						{{examination.clinic}}
+						</td>
+						<td data-name="desc">
+							{{examination.medicalRoom}}
+						</td>
+						<td data-name="desc">
+							<input type="number"   name="desc0" class="form-control" min="0" max="5" [(ngModel)]="examination.userClinicRate" />
+						</td>
+						<td data-name="desc">
+							<input type="number"  name="desc0" class="form-control" min="0" max="5" [(ngModel)]="examination.userDoctorRate" />
+						</td>
+						<td>
+							<button  class="btn btn-primary" (click)="applyRates(examination.userClinicRate,examination.userDoctorRate,examination.doctorUsername)">Apply rates</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

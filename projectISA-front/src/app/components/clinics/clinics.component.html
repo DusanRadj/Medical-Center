@@ -1,0 +1,64 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+
+<div class="container">
+    <br />
+    <h3>Filter by:</h3>
+    <div>
+        <p>Date: <input type="date" [(ngModel)]="myDate" /></p>
+
+        <p>Type of examination: <input type="text" [(ngModel)]="type" /></p>
+        <button class="btn btn-primary" (click)="refresh()">Search</button>
+    </div>
+    <br />
+    <hr />
+
+    <br>
+    <h3>List of available clinics: </h3>
+    <div class="form-group">
+        <label>Sort by</label>
+        <select (change)="onChange()" class="custom-select" name="type" [(ngModel)]="sortType">
+            <option *ngFor="let st of sortTypes">{{st}}</option>
+        </select>
+    </div>
+    <div class="row" id="ads" *ngIf="clinics.length > 0">
+        <!-- Category Card -->
+        <div class="col-md-4" *ngFor="let c of clinics">
+            <div class="card rounded">
+                <div class="card-image">
+                    <span class="card-notify-year">
+                        <b *ngIf="c.avgClinicRate!=0">Average rating: {{c.avgClinicRate}}</b>
+                        <b *ngIf="c.avgClinicRate==0">Not rated yet</b>
+                        <span [class.checked]="c.avgClinicRate>0.49" class="fa fa-star"></span>
+                        <span [class.checked]="c.avgClinicRate>1.49" class="fa fa-star "></span>
+                        <span [class.checked]="c.avgClinicRate>2.49" class="fa fa-star "></span>
+                        <span [class.checked]="c.avgClinicRate>3.49" class="fa fa-star"></span>
+                        <span [class.checked]="c.avgClinicRate>4.49" class="fa fa-star"></span>
+                    </span>
+                    <img class="img-fluid" src="assets/img/medicalclinic.jpg" alt="Alternate Text" />
+                </div>
+
+
+                <div class="card-body text-center">
+                    <h5>{{c.name}}</h5>
+                    <span class="card-detail-badge"><a class="moreLink" [routerLink]="['/clinic', c.id]">Show
+                            profile</a></span>
+                    <span class="card-detail-badge"><a class="moreLink" (click)="showDoctors(c.id)">Show
+                            doctors</a></span>
+                </div>
+                <!--pipe-->
+                <small><b>{{c.address.street}} {{c.address.number}}, {{c.address.city}},
+                        {{c.address.country}}</b></small>
+            </div>
+        </div>
+
+
+    </div>
+    <div *ngIf="clinics.length==0">
+        <h2>No results found!</h2>
+    </div>
+</div>

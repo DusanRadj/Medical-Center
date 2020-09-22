@@ -1,0 +1,31 @@
+<div class="container-fluid" style="margin-left: 10px;">
+    <h1>Reservation</h1>
+    <form #myForm="ngForm" novalidate (ngSubmit)="reserveExamination()">
+        <div class="form-group">
+            <label>Date:</label>
+            <input disabled type="date" class="form-control" name="date" [(ngModel)]="date">
+        </div>
+
+        <div class="form-group">
+            <label>Doctor</label>
+            <input disabled type="text" class="form-control" name="doctor" [value]="doctor.username">
+        </div>
+
+        <div class="form-group">
+            <label>Type</label>
+            <select required (change)="onChange()" class="custom-select" name="type"  [(ngModel)]="type" >
+                <option  *ngFor="let myType of doctor.typesOfExamination" [ngValue]="myType">{{myType.type}}</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label>Price</label>
+            <input required disabled type="number" class="form-control" name="price" [(ngModel)]="price">
+        </div>
+        
+        <button [disabled]="myForm.invalid"  class="btn btn-primary" type="submit">Reserve</button>
+    </form>
+</div>
+
+
+

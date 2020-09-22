@@ -1,0 +1,12 @@
+.selectedDoc {
+    border-style: double;
+    background-color: #87CEFA;
+}
+
+.myCard {
+    margin-left: 10px;
+}
+
+.checked {
+    color: orange;
+}

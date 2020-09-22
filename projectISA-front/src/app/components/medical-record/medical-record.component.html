@@ -1,0 +1,76 @@
+<h2 style="margin-left: 50px; margin-top: 20px;">Medical record</h2>
+<br>
+<hr>
+<div class="container">
+	<div class="row clearfix">
+		
+        <div class="col-md-12 table-responsive">
+			<h4>Disease history: </h4>
+			<ul>
+				<li  *ngFor="let disease of medicalRecord.diseaseHistory">
+                   {{disease.name}}
+                </li>	
+            </ul>
+		</div>
+	</div>
+
+	<hr>
+
+	<div class="row clearfix">
+		<div class="col-md-12 table-responsive">
+			<h4>Examination reservations: </h4>
+			<table class="table table-bordered table-sortable" id="tab_logic">
+				<thead>
+					<tr>
+						<th class="text-center">
+							Date
+						</th>
+						<th class="text-center">
+							Doctor
+						</th>
+						<th class="text-center">
+							Type
+						</th>
+						<th class="text-center">
+							Duration(min)
+						</th>
+						<th class="text-center">
+							Price(rsd)
+						</th>
+						<th class="text-center">
+							Clinic
+						</th>
+						<th class="text-center">
+							Medical room
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr id='addr0' data-id="0" class="hidden" *ngFor="let examination of examinations">
+						<td data-name="name">
+							{{examination.date | date}}
+						</td>
+						<td data-name="mail">
+							{{examination.doctorUsername}}
+						</td>
+						<td data-name="desc">
+							{{examination.type}}
+						</td>
+						<td data-name="desc">
+							{{examination.duration}}
+						</td>
+						<td data-name="desc">
+							{{examination.price}}
+						</td>
+						<td data-name="desc">
+							{{examination.clinic}}
+						</td>
+						<td data-name="desc">
+							{{examination.medicalRoom}}
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
